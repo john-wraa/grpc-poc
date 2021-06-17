@@ -1,0 +1,25 @@
+
+syntax = "proto3";
+
+package natconmsg;
+
+option java_package = "org.example.grpc";
+option java_multiple_files = true;
+
+message NatconMessage {
+    int32 msg_number = 1;
+}
+
+message NatconMsgRequest {
+    NatconMessage natcon_message = 1;
+}
+message NatconMsgResponse {
+    NatconMessage natcon_message = 1;
+}
+
+service NatconMsg {
+    rpc Aims(NatconMsgRequest) returns (NatconMsgResponse) {};
+    rpc AimsStream(stream NatconMsgRequest) returns (stream NatconMsgResponse) {};
+    rpc Natcon(NatconMsgRequest) returns (NatconMsgResponse) {};
+    rpc NatconStream(stream NatconMsgRequest) returns (stream NatconMsgResponse) {};
+}
